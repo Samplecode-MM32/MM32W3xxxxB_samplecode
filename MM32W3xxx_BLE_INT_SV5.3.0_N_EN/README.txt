@@ -6,30 +6,35 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////i
-    配合蓝牙协议栈， 系统应用实现了 SPI 通信、 定时器等接口。 主要函数包括：
-1、 unsigned char SPI_WriteBuf(unsigned char reg, unsigned char const *pBuf, unsigned char len);
+2、Cooperating with the Bluetooth protocol stack, the system application implements interfaces such as SPI communication and timers. The main functions include:
 
-2、 unsigned char SPI_ReadBuf(unsigned char reg, unsigned char *pBuf, unsigned char len);
-  以上两个函数在 spi.c 文件中实现， 和 BLE 的通信相关， 请不要修改。 为保证 BLE 工作， spi 时钟应大于6MHz， 小于 10MHz。
+1. unsigned char SPI_WriteBuf(unsigned char reg, unsigned char const *pBuf, unsigned char len);
+
+2. unsigned char SPI_ReadBuf(unsigned char reg, unsigned char *pBuf, unsigned char len);
+The above two functions are implemented in the spi.c file, which is related to the BLE communication. To ensure BLE operation, the spi   clock should be greater than 6MHz and less than 10MHz.
   
-3、 Char IsIrqEnabled(void) ; 判断 IRQ 信号是否产生中断（低电平为中断有效） 。
+3. Char IsIrqEnabled(void) ;
+Determine whether the IRQ signal generates an interrupt (low level is valid for interrupt) 。
 
-4、 void IRQ_RF(void);
-以上两个函数在 irq_rf.c 文件中实现， 和 BLE 的通信相关，请不要修改。
+4. void IRQ_RF(void);
+The above two functions are implemented in the irq_rf.c file, which is related to BLE communication。
 
-5、 unsigned int GetSysTickCount(void); 获取毫秒定时器累积值，用于计时等功能。
+5. unsigned int GetSysTickCount(void); 
+Get the accumulated value of the millisecond timer for timing and other functions。
 
-6、 void SysTick_Handler(void)
-以上两个函数在 bsp.c 文件中实现， 和 BLE 通信相关，请不要修改。系统嘀嗒定时器精度可以改变，比如从1ms 到 10ms，不影响 BLE 正常运行。
+6. void SysTick_Handler(void)
+The above two functions are implemented in the bsp.c file, which is related to BLE communication. Please do not modify it. The accuracy of the system tick timer can be changed, for example from 1ms to 10ms, does not affect the normal operation of BLE。
 
-7、 低功耗功能实现示例：
+7. Low-power function implementation example：
 void IrqMcuGotoSleepAndWakeup(void)
 {
    if(ble_run_interrupt_McuCanSleep())
    {
      //to do MCU sleep/stop/standby
    }
-} 此函数在 main()函数的用户程序循环调用。
+}
+
+This function is called cyclically in the user program of the main () function。
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,14 +42,14 @@ void IrqMcuGotoSleepAndWakeup(void)
 
    MCU      RF
    PB5      MOSI 
-   PB4      MISO(需外部硬件连接)
+   PB4      MISO(Requires external hardware connection)
    PB3      SCK
    PD2      CSN
-   PC12     IRQ(需外部硬件连接)
+   PC12     IRQ(Requires external hardware connection)
  
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-四、接口函数：
+4、Interface function：
 1) void radio_initBle(unsigned char txpwr, unsigned char**addr/*Output*/);
 2) void radio_standby(void);
 3) void ble_run_interrupt_start(unsigned short adv_interval);
@@ -109,9 +114,8 @@ void IrqMcuGotoSleepAndWakeup(void)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-五、上电信息：
+5、Power-up information：
 
-此版本为透传与中断综合版本，通过USE_AT_CMD的宏来进行模式切换
-波	   特	  率：		9600
-此版本为V5.3.0版本
-2020-04-03
+This version is a comprehensive version of transparent transmission and interruption, and the mode is switched by the macro of USE_AT_CMD
+Baud rate: 9600
+
