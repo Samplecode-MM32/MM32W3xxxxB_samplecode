@@ -2,16 +2,20 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 1、Procedure description:
      The BLE library runs as a system interrupt service program, which is suitable for application scenarios that require a long CPU time but can be interrupted to implement a user function. Need to use two interrupt service routines,
-     One is the GPIO interrupt corresponding to the IRQ interrupt pin, and the other is the interrupt corresponding to the SysTick. The interrupt service program corresponding to IRQ is used to run the Bluetooth protocol, which requires a high interrupt priority (for other users to interrupt).
+     One is the GPIO interrupt corresponding to the IRQ interrupt pin, and the other is the interrupt corresponding to the SysTick. 
+The interrupt service program corresponding to IRQ is used to run the Bluetooth protocol, which requires a high interrupt priority 
+(for other users to interrupt).
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////i
-2、Cooperating with the Bluetooth protocol stack, the system application implements interfaces such as SPI communication and timers. The main functions include:
+2、Cooperating with the Bluetooth protocol stack, the system application implements interfaces such as SPI communication and timers.
+The main functions include:
 
 1. unsigned char SPI_WriteBuf(unsigned char reg, unsigned char const *pBuf, unsigned char len);
 
 2. unsigned char SPI_ReadBuf(unsigned char reg, unsigned char *pBuf, unsigned char len);
-The above two functions are implemented in the spi.c file, which is related to the BLE communication. To ensure BLE operation, the spi   clock should be greater than 6MHz and less than 10MHz.
+The above two functions are implemented in the spi.c file, which is related to the BLE communication. To ensure BLE operation, 
+the spi clock should be greater than 6MHz and less than 10MHz.
   
 3. Char IsIrqEnabled(void) ;
 Determine whether the IRQ signal generates an interrupt (low level is valid for interrupt) 。
@@ -23,7 +27,8 @@ The above two functions are implemented in the irq_rf.c file, which is related t
 Get the accumulated value of the millisecond timer for timing and other functions。
 
 6. void SysTick_Handler(void)
-The above two functions are implemented in the bsp.c file, which is related to BLE communication. Please do not modify it. The accuracy of the system tick timer can be changed, for example from 1ms to 10ms, does not affect the normal operation of BLE。
+The above two functions are implemented in the bsp.c file, which is related to BLE communication. Please do not modify it.
+The accuracy of the system tick timer can be changed, for example from 1ms to 10ms, does not affect the normal operation of BLE。
 
 7. Low-power function implementation example：
 void IrqMcuGotoSleepAndWakeup(void)
@@ -112,8 +117,8 @@ This function is called cyclically in the user program of the main () function�
 52)void WriteFlashE2PROM(u8* data, u16 len, u32 pos, u8 flag);
 53)void OtaSystemReboot(void);
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 5、Power-up information：
 
 This version is a comprehensive version of transparent transmission and interruption, and the mode is switched by the macro of USE_AT_CMD
