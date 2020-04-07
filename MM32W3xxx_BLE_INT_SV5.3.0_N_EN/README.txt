@@ -1,13 +1,12 @@
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 1、Procedure description:
-     The BLE library runs as a system interrupt service program, which is suitable for application scenarios that require a long CPU time but can be interrupted to implement a user function. Need to use two interrupt service routines,
-     One is the GPIO interrupt corresponding to the IRQ interrupt pin, and the other is the interrupt corresponding to the SysTick. 
-The interrupt service program corresponding to IRQ is used to run the Bluetooth protocol, which requires a high interrupt priority 
+     The BLE library runs as a system interrupt service program, which is suitable for application scenarios that require a long 
+ CPU time but can be interrupted to implement a user function. Need to use two interrupt service routines,One is the GPIO interrupt corresponding to the IRQ interrupt pin, and the other is the interrupt corresponding to the SysTick. The interrupt service program corresponding to IRQ is used to run the Bluetooth protocol, which requires a high interrupt priority 
 (for other users to interrupt).
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////i
 2、Cooperating with the Bluetooth protocol stack, the system application implements interfaces such as SPI communication and timers.
 The main functions include:
 
