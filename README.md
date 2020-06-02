@@ -12,11 +12,13 @@ The procedure works for MM32W373PSB/MM32W073PFB
 
 1.	Modify the IRQ pin.  PC12-->PC9
 
-2.	Update software version information. SV5.3.0-->SV5.3.1
+2.	Update software version information. SV5.3.0-->SV5.3.1.
 
 3.	Add sch_mb021.pdf
 
 2020.6.02
 
-1.	Modify the problem of UART2 annotation error
+1.	Modify the problem of UART2 annotation error.
+
+2.	add ThroughtOut and  HID_Shutter demo.
 
