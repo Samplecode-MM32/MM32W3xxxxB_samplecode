@@ -18,4 +18,4 @@ The procedure works for MM32W373PSB/MM32W073PFB
 
 2020.6.02
 
-1.add ThroughtOut demo 
+1.add HID_Shutter demo 
