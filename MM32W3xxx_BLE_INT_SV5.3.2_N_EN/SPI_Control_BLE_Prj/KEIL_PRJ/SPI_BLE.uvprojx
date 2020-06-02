@@ -337,7 +337,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>USE_STDPERIPH_DRIVER DEVICE_INFO_SUPPORT USE_UART</Define>
+              <Define>USE_STDPERIPH_DRIVER DEVICE_INFO_SUPPORT USE_UART USE_AT_CMD</Define>
               <Undefine></Undefine>
               <IncludePath>..\..\Device\CMSIS\KEIL_CORE;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\uart;..\HARDWARE\SPI;..\HARDWARE\RF_IRQ;..\HARDWARE\RF_Callback;..\SRC_LIB\inc;..\HARDWARE\PWR_Control;..\..\Device\MM32W3xxB\HAL_lib\inc;..\..\Device\MM32W3xxB\Include;..\HARDWARE\IWDG;..\HARDWARE\AT_CMD;..\..\Device\MM32W3xx\HAL_lib\inc;..\..\Device\MM32W3xx\Include</IncludePath>
             </VariousControls>
@@ -472,11 +472,6 @@
               <FileName>mg_BLEpair_lib_m3.lib</FileName>
               <FileType>4</FileType>
               <FilePath>..\SRC_LIB\lib\mg_BLEpair_lib_m3.lib</FilePath>
-            </File>
-            <File>
-              <FileName>mg_TEST_Lib.lib</FileName>
-              <FileType>4</FileType>
-              <FilePath>..\SRC_LIB\lib\mg_TEST_Lib.lib</FilePath>
             </File>
           </Files>
         </Group>

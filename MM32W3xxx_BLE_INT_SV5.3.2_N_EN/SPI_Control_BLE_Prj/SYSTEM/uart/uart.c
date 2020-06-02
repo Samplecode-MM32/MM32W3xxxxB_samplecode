@@ -68,7 +68,7 @@ int fputc(int ch, FILE *f)
 **
 **@return   None.
 ********************************************************************************************************/
-void uart_initwBaudRate(UART_TypeDef *UARTx)
+void uart_initwBaudRate()
 {
   //GPIO cfg
   GPIO_InitTypeDef GPIO_InitStructure;
@@ -94,18 +94,18 @@ void uart_initwBaudRate(UART_TypeDef *UARTx)
   UART_InitStructure.UART_Mode = UART_Mode_Rx | UART_Mode_Tx; //Configure send and receive mode
 
   UART_Init(UART2, &UART_InitStructure); //uart2 enable
-  UART_ITConfig(UART1, UART_IT_TXIEN, DISABLE);
+  UART_ITConfig(UART2, UART_IT_TXIEN, DISABLE);
   UART_ITConfig(UART2, UART_IT_RXIEN, ENABLE);//Enable UART receive interrupt
   UART_Cmd(UART2, ENABLE);                   //uart2 enable
 
   //UART2_TX
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2; //PA.9
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2; //PA.2
   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP; //Multiplexed push-pull output
   GPIO_Init(GPIOA, &GPIO_InitStructure);//GPIO initialization
 
   //UART2_RX 
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3;//PA10
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3;//PA3
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING; //Floating input
   GPIO_Init(GPIOA, &GPIO_InitStructure);                //GPIO initialization
 
@@ -144,7 +144,6 @@ void ChangeBaudRate(void)
 void moduleOutData(u8 *data, u8 len) //api
 {
   unsigned char i;
-//    printf("%s\n",data); //debug
   if ((txLen + len) < MAX_SIZE) //buff not overflow
   {
     for (i = 0; i < len; i++)

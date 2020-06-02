@@ -3,7 +3,7 @@
 #include "stdio.h"	
 #include "sys.h" 
 //´®¿Ú1³õÊ¼»¯		   
-void uart_initwBaudRate(UART_TypeDef* UARTx);
+void uart_initwBaudRate(void);
 void ChangeBaudRate(void);
 #endif
 

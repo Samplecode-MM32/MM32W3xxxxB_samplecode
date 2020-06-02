@@ -2,7 +2,7 @@
 #include "iwdg.h"
 #include "AT_CMD.h"
 #include "mg_api.h"
-///////////////FIFO proc for AT cmd///////////////
+
 #define TO_HIGH_CASE
 #define comrxbuf_wr_pos RxCont
 u16 comrxbuf_rd_pos = 0; //init, com rx buffer
@@ -11,8 +11,8 @@ u8 AtCmdBuf[MAX_AT_CMD_BUF_SIZE], AtCmdBufDataSize = 0;
 #define MAX_SIZE 100
 u8 txBuf[MAX_SIZE], rxBuf[MAX_SIZE], txLen = 0;
 u16 RxCont = 0;
-//u16 PosR = 0;
 u8 PosW = 0;
+
 extern u8 CanNotifyFlag;
 u8 connect_data = 0;
 extern unsigned char WaitSetBaud;
@@ -93,7 +93,6 @@ void UsrProcCallback(void) //porting api
   }
   if ((SleepStop == 2) && (RxTimeout < SysTick_Count))
   {
-    GPIO_SetBits(GPIOB, GPIO_Pin_7);
     RxTimeout = SysTick_Count + (20000 / BaudRate);
   }
 
@@ -123,7 +122,6 @@ static char dis_int_count = 0;
 ********************************************************************************************************/
 void DisableEnvINT(void)
 {
-  GPIO_SetBits(GPIOB, GPIO_Pin_7);
   //to disable int
   __ASM volatile("cpsid i");
   dis_int_count ++;
@@ -146,7 +144,6 @@ void EnableEnvINT(void)
     dis_int_count = 0; //reset
     __ASM volatile("cpsie i");
   }
-  GPIO_ResetBits(GPIOB, GPIO_Pin_7);
 }
 
 

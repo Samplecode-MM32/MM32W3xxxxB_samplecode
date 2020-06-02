@@ -59,10 +59,10 @@ void ChangeBaudRate(void);
 #define TYPE_INC       0x2802
 #define UUID16_FORMAT  0xff
 
-#define SOFTWARE_INFO "SV5.3.1"
+#define SOFTWARE_INFO "SV5.3.2"
 #define MANU_INFO     "MINDMOTION Bluetooth"
 char DeviceInfo[24] =  "MINDMOTION";  /*max len is 24 bytes*/
-
+static unsigned char gConnectedFlag = 0;
 u16 cur_notifyhandle = 0x12;  //Note: make sure each notify handle by invoking function: set_notifyhandle(hd);
 
 /********************************************************************************************************
@@ -388,7 +388,6 @@ int GetPrimaryServiceHandle(unsigned short hd_start, unsigned short hd_end,
 //        *hd_end_r = 0x2a;
 //        return 1;
 //    }
-
   return 0;
 }
 
@@ -402,8 +401,8 @@ int GetPrimaryServiceHandle(unsigned short hd_start, unsigned short hd_end,
 ********************************************************************************************************/
 void gatt_user_send_notify_data_callback(void)
 {
-  //to do if any ...
-  //add user sending data notify operation ....
+//		to do if any ...
+//		add user sending data notify operation ....
 //    sconn_notifydata(pld_adv,len_adv);
 }
 
@@ -420,7 +419,6 @@ u8 *getsoftwareversion(void)
   return (u8 *)SOFTWARE_INFO;
 }
 
-static unsigned char gConnectedFlag = 0;
 /********************************************************************************************************
 **function: GetConnectedStatus
 **@brief    Gets the connection status of the BLE device
@@ -519,13 +517,12 @@ void UpdateLEDValueAll(void) //porting function
 
 unsigned char aes_encrypt_HW(unsigned char *_data, unsigned char *_key)
 {
-	unsigned int tmp = 0;
 
 #ifndef AES_HW_SUPPORT
 	return 0; //HW AES NOT supported
 
 #else  //HW AES supported
-
+	unsigned int tmp = 0;
 	RCC_AHB2PeriphClockCmd(RCC_AHB2Periph_AES, ENABLE); //AES CLK enable
 	
 	AES->CR = 0x00;	

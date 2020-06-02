@@ -20,17 +20,11 @@ void McuGotoSleepAndWakeup(void) // auto goto sleep AND wakeup, porting api
   {
     if (SleepStop == 1) //sleep
     {
-      SCB->SCR &= 0xfb;
-      __WFE();
-    }
-    else   //stop
-    {
-      SCB->SCR |= 0x4;
+			NVIC_SystemLPConfig(NVIC_LP_SLEEPDEEP,ENABLE);
       __WFI();
-      RCC->CR |= RCC_CR_HSION;
-      RCC->CR |= RCC_CR_PLLON;
-      RCC->CFGR |= (uint32_t)RCC_CFGR_SW_PLL;
-      GPIO_ResetBits(GPIOB, GPIO_Pin_7);
+			RCC_HSICmd(ENABLE); 
+			RCC_PLLCmd(ENABLE);
+			RCC_SYSCLKConfig(RCC_SYSCLKSource_PLLCLK);
     }
   }
 }

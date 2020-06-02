@@ -30,11 +30,11 @@ int main(void)
   SPIM_Init(0x06);
   IRQ_RF();
   SYSTick_Configuration();
-  uart_initwBaudRate(UART1);
+  uart_initwBaudRate();
   SetBleIntRunningMode();
   radio_initBle(TXPWR_3DBM, &ble_mac_addr);
   IWDG_Init(4, 625);
-    
+
   value_t[0] = 0xc0;
   value_t[1] = *(u8 *)0x1FFFF820; //Read FT value(FT value:The RF module is calibrated at the factory to prevent frequency deviation. The user can call the FT value in the program)
 
